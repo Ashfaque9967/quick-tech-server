@@ -36,6 +36,12 @@ export const Route = createRootRoute({
       { name: "author", content: "Quick Tech Systems" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:title", content: "Quick Tech Systems — Enterprise Server Infrastructure & 24/7 Support, India" },
+      { name: "twitter:title", content: "Quick Tech Systems — Enterprise Server Infrastructure & 24/7 Support, India" },
+      { property: "og:description", content: "Quick Tech Systems supplies, maintains, and leases enterprise-grade server components across India with 24/7 expert support." },
+      { name: "twitter:description", content: "Quick Tech Systems supplies, maintains, and leases enterprise-grade server components across India with 24/7 expert support." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9582c726-74c9-47d9-a064-affce9520e53/id-preview-9a897355--153ef03e-e634-4364-8a0e-8c310ebcc6f6.lovable.app-1776536829258.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9582c726-74c9-47d9-a064-affce9520e53/id-preview-9a897355--153ef03e-e634-4364-8a0e-8c310ebcc6f6.lovable.app-1776536829258.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
