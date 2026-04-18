@@ -8,9 +8,9 @@ import blog3 from "@/assets/blog-3.jpg";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Journal — Northrack" },
+      { title: "Journal — Quick Tech Systems" },
       { name: "description", content: "Field notes on datacenter operations, server hardware, and enterprise infrastructure strategy." },
-      { property: "og:title", content: "Journal — Northrack" },
+      { property: "og:title", content: "Journal — Quick Tech Systems" },
       { property: "og:description", content: "Field notes on datacenter operations and server hardware." },
     ],
   }),

@@ -4,9 +4,9 @@ import { SectionLabel } from "@/components/site/SectionLabel";
 export const Route = createFileRoute("/brands")({
   head: () => ({
     meta: [
-      { title: "Brands — Northrack" },
+      { title: "Brands — Quick Tech Systems" },
       { name: "description", content: "Genuine parts and certified service for Dell, HPE, Lenovo, Cisco, IBM, and Supermicro platforms." },
-      { property: "og:title", content: "Brands — Northrack" },
+      { property: "og:title", content: "Brands — Quick Tech Systems" },
       { property: "og:description", content: "Authorised support across major enterprise server platforms." },
     ],
   }),

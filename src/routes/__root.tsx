@@ -31,9 +31,9 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Northrack — Enterprise Server Infrastructure & 24/7 Support, India" },
-      { name: "description", content: "Northrack supplies, maintains, and leases enterprise-grade server components across India with 24/7 expert support." },
-      { name: "author", content: "Northrack" },
+      { title: "Quick Tech Systems — Enterprise Server Infrastructure & 24/7 Support, India" },
+      { name: "description", content: "Quick Tech Systems supplies, maintains, and leases enterprise-grade server components across India with 24/7 expert support." },
+      { name: "author", content: "Quick Tech Systems" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

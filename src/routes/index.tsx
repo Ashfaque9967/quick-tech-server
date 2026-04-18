@@ -9,9 +9,9 @@ import blog3 from "@/assets/blog-3.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Northrack — Reliable Server Infrastructure. Nationwide Support." },
+      { title: "Quick Tech Systems — Reliable Server Infrastructure. Nationwide Support." },
       { name: "description", content: "Enterprise-grade server parts, maintenance, and leasing across India. 24/7 expert support for Dell, HP, Lenovo, Cisco, and IBM." },
-      { property: "og:title", content: "Northrack — Server Infrastructure & 24/7 Support" },
+      { property: "og:title", content: "Quick Tech Systems — Server Infrastructure & 24/7 Support" },
       { property: "og:description", content: "Enterprise server parts, maintenance, and leasing across India." },
     ],
   }),
@@ -25,7 +25,14 @@ const services = [
   { icon: Headphones, title: "24/7 Support", desc: "Round-the-clock NOC with 4-hour response SLAs across major Indian metros." },
 ];
 
-const brands = ["Dell", "HPE", "Lenovo", "Cisco", "IBM", "Supermicro"];
+const brands = [
+  { name: "Dell", note: "PowerEdge · PowerStore" },
+  { name: "HPE", note: "ProLiant · Synergy" },
+  { name: "Lenovo", note: "ThinkSystem" },
+  { name: "Cisco", note: "UCS · Nexus" },
+  { name: "IBM", note: "Power · Storage" },
+  { name: "Supermicro", note: "SuperServer" },
+];
 
 const reasons = [
   { n: "01", t: "Nationwide Coverage", d: "Field engineers in 14 cities." },
@@ -50,7 +57,7 @@ function Home() {
         <div className="container-swiss pt-16 md:pt-24 pb-20 md:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
             <div className="lg:col-span-7 reveal">
-              <SectionLabel index="01 / 06">Infrastructure</SectionLabel>
+              <SectionLabel>Infrastructure</SectionLabel>
               <h1 className="mt-8 text-[44px] sm:text-6xl lg:text-[88px] leading-[0.95] tracking-tight font-medium">
                 Reliable server <br />
                 infrastructure. <br />
@@ -69,7 +76,8 @@ function Home() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 reveal" style={{ animationDelay: "120ms" }}>
+            {/* Hero image — desktop only */}
+            <div className="hidden lg:block lg:col-span-5 reveal" style={{ animationDelay: "120ms" }}>
               <div className="aspect-square bg-muted relative overflow-hidden">
                 <img
                   src={serverRack}
@@ -112,7 +120,7 @@ function Home() {
         <div className="container-swiss py-20 md:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
             <div className="lg:col-span-4">
-              <SectionLabel index="02 / 06">Services</SectionLabel>
+              <SectionLabel>Services</SectionLabel>
             </div>
             <div className="lg:col-span-8">
               <h2 className="text-3xl md:text-5xl tracking-tight font-medium leading-[1.05] max-w-2xl">
@@ -122,17 +130,14 @@ function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 hairline-t">
-            {services.map((s, i) => {
+            {services.map((s) => {
               const Icon = s.icon;
               return (
                 <div
                   key={s.title}
                   className="group relative p-8 border-b md:border-b-0 md:border-r border-rule last:border-r-0 hover:bg-card transition-colors"
                 >
-                  <div className="flex items-center justify-between">
-                    <Icon size={28} strokeWidth={1.25} className="text-foreground group-hover:text-primary transition-colors" />
-                    <span className="text-mono text-[11px] text-muted-foreground">0{i + 1}</span>
-                  </div>
+                  <Icon size={28} strokeWidth={1.25} className="text-foreground group-hover:text-primary transition-colors" />
                   <h3 className="mt-12 text-xl font-medium tracking-tight">{s.title}</h3>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                   <div className="mt-10 inline-flex items-center gap-1.5 text-mono text-[11px] uppercase tracking-[0.14em] text-foreground">
@@ -146,34 +151,51 @@ function Home() {
         </div>
       </section>
 
-      {/* BRANDS */}
+      {/* BRANDS — sticky heading + 2 col list */}
       <section className="hairline-b">
         <div className="container-swiss py-20 md:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
-            <div className="lg:col-span-4">
-              <SectionLabel index="03 / 06">Brands</SectionLabel>
-            </div>
-            <div className="lg:col-span-8">
-              <h2 className="text-3xl md:text-5xl tracking-tight font-medium leading-[1.05] max-w-2xl">
-                Brands we support.
-              </h2>
-              <p className="mt-4 text-muted-foreground max-w-lg">
-                Authorised access to genuine parts and certified service across leading enterprise platforms.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 hairline-t hairline-b">
-            {brands.map((b) => (
-              <div
-                key={b}
-                className="group h-28 flex items-center justify-center border-r border-b lg:border-b-0 border-rule last:border-r-0 [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n)]:border-r lg:[&:last-child]:border-r-0"
-              >
-                <span className="text-2xl font-medium tracking-tight text-muted-foreground/60 group-hover:text-primary transition-colors">
-                  {b}
-                </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-32">
+                <SectionLabel>Brands</SectionLabel>
+                <h2 className="mt-6 text-4xl md:text-6xl tracking-tight font-medium leading-[1.0]">
+                  Brands <br /> we <span className="text-primary">support.</span>
+                </h2>
+                <p className="mt-6 text-muted-foreground max-w-md">
+                  Authorised access to genuine parts and certified service across leading enterprise platforms — with traceable inventory and OEM-compliant procedures.
+                </p>
+                <div className="mt-8 text-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  06 vendors · 14 cities · 24/7
+                </div>
               </div>
-            ))}
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="grid grid-cols-1 sm:grid-cols-2 hairline-t">
+                {brands.map((b, i) => (
+                  <div
+                    key={b.name}
+                    className={`group relative p-8 border-b border-rule sm:[&:nth-child(odd)]:border-r ${
+                      i >= brands.length - 2 ? "sm:[&:nth-last-child(-n+2)]:border-b-0" : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="text-3xl md:text-4xl font-medium tracking-tight text-foreground/80 group-hover:text-primary transition-colors">
+                        {b.name}
+                      </span>
+                      <span className="text-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <p className="mt-6 text-sm text-muted-foreground">{b.note}</p>
+                    <ArrowUpRight
+                      size={14}
+                      className="absolute bottom-6 right-6 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -183,7 +205,7 @@ function Home() {
         <div className="container-swiss py-20 md:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
             <div className="lg:col-span-4">
-              <SectionLabel index="04 / 06">Why us</SectionLabel>
+              <SectionLabel>Why us</SectionLabel>
             </div>
             <div className="lg:col-span-8">
               <h2 className="text-3xl md:text-5xl tracking-tight font-medium leading-[1.05] max-w-2xl">
@@ -211,7 +233,7 @@ function Home() {
         <div className="container-swiss py-20 md:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
             <div className="lg:col-span-4">
-              <SectionLabel index="05 / 06">Journal</SectionLabel>
+              <SectionLabel>Journal</SectionLabel>
             </div>
             <div className="lg:col-span-8 flex items-end justify-between gap-6">
               <h2 className="text-3xl md:text-5xl tracking-tight font-medium leading-[1.05] max-w-xl">
@@ -224,7 +246,7 @@ function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-            {posts.map((p, i) => (
+            {posts.map((p) => (
               <article key={p.title} className="group">
                 <div className="aspect-[4/3] overflow-hidden bg-muted">
                   <img
@@ -236,9 +258,8 @@ function Home() {
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
-                <div className="mt-5 flex items-center justify-between text-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                  <span>{p.tag}</span>
-                  <span>0{i + 1} / 03</span>
+                <div className="mt-5 text-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {p.tag}
                 </div>
                 <h3 className="mt-3 text-xl font-medium tracking-tight leading-snug group-hover:text-primary transition-colors">
                   {p.title}
@@ -258,7 +279,7 @@ function Home() {
         <div className="container-swiss py-20 md:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-8">
-              <SectionLabel index="06 / 06">Engage</SectionLabel>
+              <SectionLabel>Engage</SectionLabel>
               <h2 className="mt-6 text-4xl md:text-6xl lg:text-7xl tracking-tight font-medium leading-[1.0]">
                 Talk to an engineer, <br /> not a call centre.
               </h2>
