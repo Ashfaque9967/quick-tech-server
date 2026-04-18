@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/site/SectionLabel";
-import { getPost, posts } from "@/lib/posts";
+import { getPost, posts, type Post } from "@/lib/posts";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -38,7 +38,8 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function PostPage() {
-  const { post } = Route.useLoaderData();
+  const data = Route.useLoaderData() as { post: Post };
+  const { post } = data;
   const others = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
 
   return (
