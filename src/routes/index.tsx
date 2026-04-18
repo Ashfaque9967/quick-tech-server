@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Cpu, Wrench, Server, Headphones } from "lucide-react";
 import { SectionLabel } from "@/components/site/SectionLabel";
-import serverRack from "@/assets/server-rack.jpg";
 import blog1 from "@/assets/blog-1.jpg";
 import blog2 from "@/assets/blog-2.jpg";
 import blog3 from "@/assets/blog-3.jpg";
@@ -25,15 +24,6 @@ const services = [
   { icon: Headphones, title: "24/7 Support", desc: "Round-the-clock NOC with 4-hour response SLAs across major Indian metros." },
 ];
 
-const brands = [
-  { name: "Dell", note: "PowerEdge · PowerStore" },
-  { name: "HPE", note: "ProLiant · Synergy" },
-  { name: "Lenovo", note: "ThinkSystem" },
-  { name: "Cisco", note: "UCS · Nexus" },
-  { name: "IBM", note: "Power · Storage" },
-  { name: "Supermicro", note: "SuperServer" },
-];
-
 const reasons = [
   { n: "01", t: "Nationwide Coverage", d: "Field engineers in 14 cities." },
   { n: "02", t: "24/7 Expert Support", d: "Always-on NOC, year-round." },
@@ -44,57 +34,89 @@ const reasons = [
 ];
 
 const posts = [
-  { img: blog1, tag: "Datacenter", title: "Designing for 99.999% uptime in tier-3 facilities", excerpt: "How redundancy planning and predictive maintenance keep mission-critical workloads online." },
-  { img: blog2, tag: "Hardware", title: "Choosing memory: RDIMM vs LRDIMM in dense workloads", excerpt: "A practical buyer's guide for memory selection in modern dual-socket platforms." },
-  { img: blog3, tag: "Operations", title: "Cabling discipline as a reliability strategy", excerpt: "Why structured cabling pays back in MTTR, airflow, and audit readiness." },
+  { slug: "uptime-tier-3", img: blog1, tag: "Datacenter", title: "Designing for 99.999% uptime in tier-3 facilities", excerpt: "How redundancy planning and predictive maintenance keep mission-critical workloads online." },
+  { slug: "rdimm-vs-lrdimm", img: blog2, tag: "Hardware", title: "Choosing memory: RDIMM vs LRDIMM in dense workloads", excerpt: "A practical buyer's guide for memory selection in modern dual-socket platforms." },
+  { slug: "cabling-discipline", img: blog3, tag: "Operations", title: "Cabling discipline as a reliability strategy", excerpt: "Why structured cabling pays back in MTTR, airflow, and audit readiness." },
 ];
 
 function Home() {
   return (
     <div className="text-foreground">
-      {/* HERO */}
-      <section className="hairline-b">
-        <div className="container-swiss pt-16 md:pt-24 pb-20 md:pb-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
-            <div className="lg:col-span-7 reveal">
-              <SectionLabel>Infrastructure</SectionLabel>
-              <h1 className="mt-8 text-[44px] sm:text-6xl lg:text-[88px] leading-[0.95] tracking-tight font-medium">
-                Reliable server <br />
-                infrastructure. <br />
-                <span className="text-primary">Nationwide</span> support.
-              </h1>
-              <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+      {/* HERO — typographic, no image */}
+      <section className="hairline-b relative overflow-hidden">
+        {/* Decorative grid */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.06]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)",
+              backgroundSize: "80px 80px",
+            }}
+          />
+        </div>
+
+        <div className="container-swiss relative pt-16 md:pt-24 pb-20 md:pb-28">
+          <div className="reveal">
+            <SectionLabel>Infrastructure · IN</SectionLabel>
+          </div>
+
+          {/* Massive type */}
+          <h1 className="mt-10 reveal font-medium tracking-tighter leading-[0.86]">
+            <span className="block text-[15vw] md:text-[13vw] lg:text-[11.5vw]">
+              Reliable
+            </span>
+            <span className="block text-[15vw] md:text-[13vw] lg:text-[11.5vw] -mt-2 md:-mt-4">
+              <span className="inline-flex items-baseline gap-3 md:gap-6">
+                <span className="text-primary italic font-light">server*</span>
+                <span className="text-muted-foreground/30 text-[6vw] md:text-[3vw] font-mono not-italic font-normal -translate-y-2">
+                  /rak/
+                </span>
+              </span>
+            </span>
+            <span className="block text-[15vw] md:text-[13vw] lg:text-[11.5vw] -mt-2 md:-mt-4">
+              infrastructure.
+            </span>
+          </h1>
+
+          {/* Subtext row */}
+          <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 reveal" style={{ animationDelay: "120ms" }}>
+            <div className="lg:col-span-5 lg:col-start-1">
+              <p className="text-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                * Engineered. Maintained. Leased. — Nationwide.
+              </p>
+              <p className="mt-4 text-base md:text-lg text-foreground/80 leading-relaxed max-w-md">
                 We supply, maintain, and lease enterprise-grade server components across India — backed by 24/7 expert engineers and 4-hour SLAs.
               </p>
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 h-12 text-sm font-medium hover:bg-primary/90 transition-colors">
-                  Get a Quote <ArrowUpRight size={16} />
-                </Link>
-                <Link to="/services" className="inline-flex items-center gap-2 border border-border-strong px-5 h-12 text-sm font-medium hover:bg-foreground hover:text-background transition-colors">
-                  Explore Services
-                </Link>
+            </div>
+
+            <div className="lg:col-span-4 lg:col-start-7">
+              <div className="text-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                ◐ Currently online
+              </div>
+              <div className="mt-4 flex flex-col gap-1 text-sm text-foreground/80">
+                <div className="flex justify-between border-b border-rule py-2">
+                  <span>NOC · Bengaluru</span>
+                  <span className="text-primary text-mono text-[11px]">99.997%</span>
+                </div>
+                <div className="flex justify-between border-b border-rule py-2">
+                  <span>Cities served</span>
+                  <span className="text-mono text-[11px]">14</span>
+                </div>
+                <div className="flex justify-between border-b border-rule py-2">
+                  <span>SLA · metros</span>
+                  <span className="text-mono text-[11px]">4 hr</span>
+                </div>
               </div>
             </div>
 
-            {/* Hero image — desktop only */}
-            <div className="hidden lg:block lg:col-span-5 reveal" style={{ animationDelay: "120ms" }}>
-              <div className="aspect-square bg-muted relative overflow-hidden">
-                <img
-                  src={serverRack}
-                  alt="Enterprise server rack illustration"
-                  width={1280}
-                  height={1280}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                  <span>FIG. 01</span>
-                  <span>RACK / 42U</span>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                  <span>BLR—01</span>
-                  <span>↗ ONLINE</span>
-                </div>
-              </div>
+            <div className="lg:col-span-3 lg:col-start-11 flex lg:flex-col gap-3 lg:items-stretch">
+              <Link to="/contact" className="flex-1 lg:flex-none inline-flex items-center justify-between gap-2 bg-primary text-primary-foreground px-4 h-12 text-sm font-medium hover:bg-primary/90 transition-colors">
+                Get a Quote <ArrowUpRight size={16} />
+              </Link>
+              <Link to="/services" className="flex-1 lg:flex-none inline-flex items-center justify-between gap-2 border border-border-strong px-4 h-12 text-sm font-medium hover:bg-foreground hover:text-background transition-colors">
+                Services <ArrowUpRight size={16} />
+              </Link>
             </div>
           </div>
 
@@ -151,55 +173,6 @@ function Home() {
         </div>
       </section>
 
-      {/* BRANDS — sticky heading + 2 col list */}
-      <section className="hairline-b">
-        <div className="container-swiss py-20 md:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-            <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-32">
-                <SectionLabel>Brands</SectionLabel>
-                <h2 className="mt-6 text-4xl md:text-6xl tracking-tight font-medium leading-[1.0]">
-                  Brands <br /> we <span className="text-primary">support.</span>
-                </h2>
-                <p className="mt-6 text-muted-foreground max-w-md">
-                  Authorised access to genuine parts and certified service across leading enterprise platforms — with traceable inventory and OEM-compliant procedures.
-                </p>
-                <div className="mt-8 text-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                  06 vendors · 14 cities · 24/7
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 hairline-t">
-                {brands.map((b, i) => (
-                  <div
-                    key={b.name}
-                    className={`group relative p-8 border-b border-rule sm:[&:nth-child(odd)]:border-r ${
-                      i >= brands.length - 2 ? "sm:[&:nth-last-child(-n+2)]:border-b-0" : ""
-                    }`}
-                  >
-                    <div className="flex items-start justify-between">
-                      <span className="text-3xl md:text-4xl font-medium tracking-tight text-foreground/80 group-hover:text-primary transition-colors">
-                        {b.name}
-                      </span>
-                      <span className="text-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                        0{i + 1}
-                      </span>
-                    </div>
-                    <p className="mt-6 text-sm text-muted-foreground">{b.note}</p>
-                    <ArrowUpRight
-                      size={14}
-                      className="absolute bottom-6 right-6 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* WHY CHOOSE US */}
       <section className="hairline-b">
         <div className="container-swiss py-20 md:py-28">
@@ -216,7 +189,7 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 hairline-t">
             {reasons.map((r) => (
-              <div key={r.n} className="p-8 border-b lg:border-b border-r border-rule [&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0 lg:nth-last-[1]:border-b-0 lg:nth-last-[2]:border-b-0 lg:nth-last-[3]:border-b-0">
+              <div key={r.n} className="p-8 border-b border-r border-rule [&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0">
                 <div className="flex items-baseline gap-4">
                   <span className="text-mono text-[11px] text-primary">{r.n}</span>
                   <h3 className="text-xl font-medium tracking-tight">{r.t}</h3>
@@ -247,7 +220,7 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {posts.map((p) => (
-              <article key={p.title} className="group">
+              <Link key={p.title} to="/blog/$slug" params={{ slug: p.slug }} className="group block">
                 <div className="aspect-[4/3] overflow-hidden bg-muted">
                   <img
                     src={p.img}
@@ -265,10 +238,10 @@ function Home() {
                   {p.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.excerpt}</p>
-                <Link to="/blog" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
                   Read more <ArrowUpRight size={14} />
-                </Link>
-              </article>
+                </span>
+              </Link>
             ))}
           </div>
         </div>

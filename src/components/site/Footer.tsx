@@ -1,49 +1,61 @@
 import { Link } from "@tanstack/react-router";
 
-function RackPattern() {
-  // Stylised rack-unit SVG pattern: stacked 1U slots with status LEDs.
-  const units = Array.from({ length: 14 });
+function HorizontalRack() {
+  // Wide horizontal server rack: stacked 1U servers spanning full width
+  const units = Array.from({ length: 10 });
   return (
     <svg
-      viewBox="0 0 320 480"
-      className="w-full h-full"
+      viewBox="0 0 1600 220"
+      className="w-full h-auto"
       aria-hidden
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio="none"
     >
-      {/* Frame */}
-      <rect x="6" y="6" width="308" height="468" fill="none" stroke="currentColor" strokeOpacity="0.5" />
-      <line x1="20" y1="6" x2="20" y2="474" stroke="currentColor" strokeOpacity="0.25" />
-      <line x1="300" y1="6" x2="300" y2="474" stroke="currentColor" strokeOpacity="0.25" />
+      {/* Outer chassis */}
+      <rect x="2" y="2" width="1596" height="216" fill="none" stroke="currentColor" strokeOpacity="0.5" />
+      {/* Vertical rails */}
+      <line x1="22" y1="2" x2="22" y2="218" stroke="currentColor" strokeOpacity="0.3" />
+      <line x1="1578" y1="2" x2="1578" y2="218" stroke="currentColor" strokeOpacity="0.3" />
 
       {units.map((_, i) => {
-        const y = 18 + i * 32;
-        const led = i % 4 === 0;
-        const drive = i % 3 === 0;
+        const y = 12 + i * 20;
+        const ledOn = i % 3 === 0;
+        const drives = i % 2 === 0;
         return (
           <g key={i}>
-            <rect x="22" y={y} width="276" height="28" fill="none" stroke="currentColor" strokeOpacity="0.35" />
-            {/* Vent slats */}
-            {Array.from({ length: 18 }).map((__, k) => (
-              <line
-                key={k}
-                x1={32 + k * 14}
-                y1={y + 8}
-                x2={32 + k * 14}
-                y2={y + 20}
-                stroke="currentColor"
-                strokeOpacity="0.18"
-              />
-            ))}
-            {/* Drive bays */}
-            {drive && (
-              <>
-                <rect x="32" y={y + 6} width="40" height="16" fill="none" stroke="currentColor" strokeOpacity="0.55" />
-                <rect x="78" y={y + 6} width="40" height="16" fill="none" stroke="currentColor" strokeOpacity="0.55" />
-              </>
-            )}
-            {/* LEDs */}
-            <circle cx="282" cy={y + 14} r="2" fill={led ? "var(--primary)" : "currentColor"} fillOpacity={led ? 1 : 0.4} />
-            <circle cx="290" cy={y + 14} r="2" fill="currentColor" fillOpacity="0.3" />
+            {/* 1U slot */}
+            <rect x="26" y={y} width="1548" height="16" fill="none" stroke="currentColor" strokeOpacity="0.3" />
+            {/* Drive bays on left */}
+            {drives &&
+              Array.from({ length: 12 }).map((__, k) => (
+                <rect
+                  key={k}
+                  x={32 + k * 28}
+                  y={y + 3}
+                  width="22"
+                  height="10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeOpacity="0.45"
+                />
+              ))}
+            {/* Vent slats centre */}
+            {!drives &&
+              Array.from({ length: 80 }).map((__, k) => (
+                <line
+                  key={k}
+                  x1={400 + k * 12}
+                  y1={y + 4}
+                  x2={400 + k * 12}
+                  y2={y + 12}
+                  stroke="currentColor"
+                  strokeOpacity="0.18"
+                />
+              ))}
+            {/* Status block + LEDs on right */}
+            <rect x="1480" y={y + 3} width="60" height="10" fill="none" stroke="currentColor" strokeOpacity="0.35" />
+            <circle cx="1552" cy={y + 8} r="2.2" fill={ledOn ? "var(--primary)" : "currentColor"} fillOpacity={ledOn ? 1 : 0.35} />
+            <circle cx="1562" cy={y + 8} r="2.2" fill="currentColor" fillOpacity="0.3" />
+            <circle cx="1572" cy={y + 8} r="2.2" fill="currentColor" fillOpacity="0.3" />
           </g>
         );
       })}
@@ -79,27 +91,29 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Horizontal rack strip */}
+      <div className="border-b border-background/15">
+        <div className="container-swiss py-6">
+          <div className="flex items-center justify-between text-mono text-[10px] uppercase tracking-[0.2em] text-background/50 mb-3">
+            <span>◐ Rack 42U / Bengaluru — DC01</span>
+            <span className="hidden sm:inline">Status — Nominal · 99.997% uptime</span>
+            <span>FIG. 02</span>
+          </div>
+          <div className="text-background/60">
+            <HorizontalRack />
+          </div>
+        </div>
+      </div>
+
       <div className="container-swiss relative py-20">
         {/* Big wordmark */}
-        <div className="grid grid-cols-12 gap-8 items-end">
-          <div className="col-span-12 lg:col-span-8">
-            <div className="text-mono text-[10px] uppercase tracking-[0.2em] text-background/50">
-              ◐ Quick Tech Systems · Est. 2014 · India
-            </div>
-            <h2 className="mt-6 text-[18vw] lg:text-[10vw] leading-[0.85] tracking-tighter font-medium">
-              Quick<span className="text-primary">.</span>
-              <br />
-              Tech.
-            </h2>
+        <div>
+          <div className="text-mono text-[10px] uppercase tracking-[0.2em] text-background/50">
+            ◐ Quick Tech Systems · Est. 2014 · India
           </div>
-          <div className="hidden lg:block lg:col-span-4">
-            <div className="aspect-[2/3] w-full max-w-[260px] ml-auto text-background/70">
-              <RackPattern />
-            </div>
-            <p className="mt-4 text-right text-mono text-[10px] uppercase tracking-[0.18em] text-background/50">
-              Fig. 02 — Rack / 42U
-            </p>
-          </div>
+          <h2 className="mt-6 text-[18vw] lg:text-[14vw] leading-[0.85] tracking-tighter font-medium">
+            Quick Tech<span className="text-primary">.</span>
+          </h2>
         </div>
 
         {/* Columns */}
@@ -114,7 +128,7 @@ export function Footer() {
             <h4 className="text-mono text-[10px] uppercase tracking-[0.18em] text-background/50">Company</h4>
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link to="/about" className="hover:text-primary transition-colors">About</Link></li>
-              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+              <li><Link to="/blog" className="hover:text-primary transition-colors">Journal</Link></li>
               <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>

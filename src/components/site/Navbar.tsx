@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const links = [
-  { to: "/", label: "Home", code: "00" },
-  { to: "/services", label: "Services", code: "01" },
-  { to: "/brands", label: "Brands", code: "02" },
-  { to: "/about", label: "About", code: "03" },
-  { to: "/blog", label: "Blog", code: "04" },
-  { to: "/contact", label: "Contact", code: "05" },
+  { to: "/", label: "Home" },
+  { to: "/services", label: "Services & Brands" },
+  { to: "/about", label: "About" },
+  { to: "/blog", label: "Journal" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function Navbar() {
@@ -52,13 +51,13 @@ export function Navbar() {
 
       {/* Main bar */}
       <div className="container-swiss grid grid-cols-12 items-center h-16">
-        {/* Logo */}
+        {/* Logo: QTS mark + wordmark */}
         <Link to="/" className="col-span-8 md:col-span-3 flex items-center gap-2.5 group">
-          <span className="relative inline-flex size-6 items-center justify-center bg-foreground text-background">
-            <span className="absolute inset-0 bg-primary scale-0 group-hover:scale-100 transition-transform duration-300 origin-bottom-left" />
-            <span className="relative text-mono text-[10px] font-semibold">Q</span>
+          <span className="relative inline-flex h-7 items-center bg-foreground text-background px-1.5 font-mono text-[12px] font-semibold tracking-tight">
+            <span className="text-primary">Q</span>TS
+            <span className="ml-1 size-1 rounded-full bg-primary group-hover:animate-pulse" />
           </span>
-          <span className="text-[14px] font-medium tracking-tight leading-none">
+          <span className="hidden sm:inline text-[14px] font-medium tracking-tight leading-none">
             Quick Tech<span className="text-muted-foreground"> · Systems</span>
           </span>
         </Link>
@@ -69,15 +68,12 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className="group relative px-3 h-10 inline-flex items-center gap-1.5 text-[13px] tracking-tight text-foreground/70 hover:text-foreground transition-colors"
+              className="group relative px-3 h-10 inline-flex items-center text-[13px] tracking-tight text-foreground/70 hover:text-foreground transition-colors"
               activeProps={{ className: "text-foreground" }}
               activeOptions={{ exact: l.to === "/" }}
             >
-              <span className="text-mono text-[9px] text-muted-foreground/70 group-hover:text-primary transition-colors">
-                {l.code}
-              </span>
               <span>{l.label}</span>
-              <span className="absolute left-3 right-3 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              <span className="absolute left-3 right-3 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </Link>
           ))}
         </nav>
@@ -113,11 +109,10 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-3 py-3 border-b border-rule/60 text-base text-foreground/80"
+                className="py-3 border-b border-rule/60 text-base text-foreground/80"
                 activeProps={{ className: "text-foreground font-medium" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
-                <span className="text-mono text-[10px] text-muted-foreground">{l.code}</span>
                 {l.label}
               </Link>
             ))}
