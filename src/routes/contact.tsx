@@ -5,9 +5,9 @@ import { SectionLabel } from "@/components/site/SectionLabel";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Northrack" },
+      { title: "Contact — Quick Tech Systems" },
       { name: "description", content: "Request a quote, raise a support ticket, or speak with an engineer. Offices in Bengaluru, Mumbai, Delhi, and Chennai." },
-      { property: "og:title", content: "Contact — Northrack" },
+      { property: "og:title", content: "Contact — Quick Tech Systems" },
       { property: "og:description", content: "Speak with an engineer. 24/7 NOC across India." },
     ],
   }),
@@ -69,9 +69,9 @@ function ContactPage() {
           <div className="lg:col-span-5">
             <h2 className="text-2xl font-medium tracking-tight">Direct lines</h2>
             <ul className="mt-8 hairline-t">
-              <Row k="Sales" v="sales@northrack.in" />
+              <Row k="Sales" v="sales@quicktech.in" />
               <Row k="Support (24/7)" v="+91 80 4000 1200" />
-              <Row k="Press" v="press@northrack.in" />
+              <Row k="Press" v="press@quicktech.in" />
             </ul>
 
             <h3 className="mt-12 text-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Offices</h3>

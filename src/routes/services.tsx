@@ -5,9 +5,9 @@ import { SectionLabel } from "@/components/site/SectionLabel";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Northrack" },
+      { title: "Services — Quick Tech Systems" },
       { name: "description", content: "Server parts sales, maintenance, leasing, and 24/7 enterprise support across India." },
-      { property: "og:title", content: "Services — Northrack" },
+      { property: "og:title", content: "Services — Quick Tech Systems" },
       { property: "og:description", content: "Parts, maintenance, leasing, and 24/7 support." },
     ],
   }),
@@ -31,7 +31,7 @@ function ServicesPage() {
             Operational excellence, <span className="text-primary">end to end.</span>
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
-            From individual components to fully-managed fleets — Northrack delivers a single accountable partner for your server estate.
+            From individual components to fully-managed fleets — Quick Tech Systems delivers a single accountable partner for your server estate.
           </p>
         </div>
       </section>
