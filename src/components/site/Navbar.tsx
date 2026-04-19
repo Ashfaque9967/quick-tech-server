@@ -110,10 +110,11 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="py-3 border-b border-rule/60 text-base text-foreground/80"
-                activeProps={{ className: "text-foreground font-medium" }}
+                className="flex items-center gap-3 py-3 border-b border-rule/60 text-base text-foreground/70"
+                activeProps={{ className: "!text-primary font-medium is-active-m" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
+                <span className="block w-1 h-5 bg-primary origin-center scale-y-0 [.is-active-m_&]:scale-y-100 transition-transform" />
                 {l.label}
               </Link>
             ))}
