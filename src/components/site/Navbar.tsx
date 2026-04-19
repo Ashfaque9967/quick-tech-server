@@ -68,12 +68,13 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className="group relative px-3 h-10 inline-flex items-center text-[13px] tracking-tight text-foreground/70 hover:text-foreground transition-colors"
-              activeProps={{ className: "text-foreground" }}
+              className="nav-link group relative px-3 h-10 inline-flex items-center gap-1.5 text-[13px] tracking-tight text-foreground/60 hover:text-foreground transition-colors"
+              activeProps={{ className: "!text-foreground font-medium is-active" }}
               activeOptions={{ exact: l.to === "/" }}
             >
+              <span className="size-1 rounded-full bg-primary opacity-0 [.is-active_&]:opacity-100 transition-opacity" />
               <span>{l.label}</span>
-              <span className="absolute left-3 right-3 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              <span className="absolute left-3 right-3 -bottom-px h-px bg-primary origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 [.is-active_&]:scale-x-100" />
             </Link>
           ))}
         </nav>
@@ -109,10 +110,11 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="py-3 border-b border-rule/60 text-base text-foreground/80"
-                activeProps={{ className: "text-foreground font-medium" }}
+                className="flex items-center gap-3 py-3 border-b border-rule/60 text-base text-foreground/70"
+                activeProps={{ className: "!text-primary font-medium is-active-m" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
+                <span className="block w-1 h-5 bg-primary origin-center scale-y-0 [.is-active-m_&]:scale-y-100 transition-transform" />
                 {l.label}
               </Link>
             ))}
